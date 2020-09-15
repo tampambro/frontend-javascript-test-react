@@ -1,0 +1,11 @@
+li a {
+  cursor: pointer;
+}
+
+.page-link {
+  user-select: none;
+}
+
+.pagination {
+  margin: 10px;
+}

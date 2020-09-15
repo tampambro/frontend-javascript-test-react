@@ -1,0 +1,9 @@
+.trInfo {
+  border: 3px solid black;
+  width: 320px;
+  border-radius: 5%;
+}
+
+.trInfo p {
+  padding: 10px;
+}
