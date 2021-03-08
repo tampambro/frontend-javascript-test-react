@@ -6,7 +6,7 @@ import './index.css';
 export default function InputForSearch() {
   const [value, setValue] = useState('');
 
-  const filterSearch = () => {
+  const filterSearch = (v) => {
     const tbody = document.querySelector("tbody");
     const rows = tbody.rows;
 
@@ -16,7 +16,7 @@ export default function InputForSearch() {
       let indicator = true;
 
       for (let cell of cells) {
-        if (cell.textContent.indexOf(value) === -1) {
+        if (cell.textContent.indexOf(v) === -1) {
           continue;
         } else {
           indicator = !indicator;
@@ -32,23 +32,26 @@ export default function InputForSearch() {
 
   return (
     <Form className="filter"
-      onSubmit={(e) => {
-        e.preventDefault();
-        filterSearch();
-      }}
+      // onSubmit={(e) => {
+      //   e.preventDefault();
+      //   filterSearch();
+      // }}
     >
       <InputGroup>
         <FormControl
           placeholder="Фильтр"
           value={value}
-          onChange={(e) => setValue(e.target.value)}
-          onKeyDown={(e) => e.key === 'Enter' ? filterSearch() : null }
+          onChange={(e) => {
+            setValue(e.target.value);
+            filterSearch(e.target.value);
+          }}
+          // onKeyDown={(e) => e.key === 'Enter' ? filterSearch() : null }
         />
-        <InputGroup.Append>
+        {/* <InputGroup.Append>
           <Button variant="outline-primary" type="submit">
             Найти
           </Button>
-        </InputGroup.Append>
+        </InputGroup.Append> */}
       </InputGroup>
     </Form>
   )

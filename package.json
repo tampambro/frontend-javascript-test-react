@@ -18,6 +18,7 @@
     "react-bootstrap": "^1.4.3",
     "react-dom": "^16.13.1",
     "react-maskedinput": "^4.0.1",
+    "react-paginate": "^7.1.0",
     "react-scripts": "3.4.3",
     "yup": "^0.32.8"
   },

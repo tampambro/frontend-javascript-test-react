@@ -1,0 +1,12 @@
+li a {
+  cursor: pointer;
+}
+
+.page-link {
+  user-select: none;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+}

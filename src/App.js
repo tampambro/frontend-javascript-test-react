@@ -55,55 +55,6 @@ export default function App() {
       }
   }
 
-  const setPage = async (event) => {
-    let target = event.target;
-    let activePages = document.querySelectorAll(".active");
-
-    if (target.closest("li")) {
-      target = target.closest("li");
-    }
-
-    if (target.classList.contains("arrow-left")) {
-      if (pageNumber === 1) {
-        return;
-      }
-      activePages.forEach((activePage) => {
-        let previousSibling = activePage.previousElementSibling;
-        activePage.classList.remove("active");
-        previousSibling.classList.add("active");
-
-        setPageNumber(pageNumber - 1);
-        listCreator(fetchResult, pageNumber - 1, tableSize);
-      })
-      return;
-    }
-
-    if (target.classList.contains("arrow-right")) {
-      if (pageNumber === pagesCount) {
-        return;
-      }
-      activePages.forEach((activePage) => {
-        let nextSibling = activePage.nextElementSibling;
-        activePage.classList.remove("active");
-        nextSibling.classList.add("active");
-
-        setPageNumber(pageNumber + 1);
-        listCreator(fetchResult, pageNumber + 1, tableSize);
-      })
-      return;
-    }
-
-    if (target.classList.contains("page-item")) {
-      activePages.forEach((activePage) => {
-        activePage.classList.remove("active");
-        target.classList.add("active");
-        setPageNumber(parseInt(target.textContent, 10));
-        listCreator(fetchResult, parseInt(target.textContent, 10), tableSize);
-      })
-      return;
-    }
-  }
-
   useEffect(() => {
     setIsShowModal(true);
   }, []);
@@ -118,7 +69,11 @@ export default function App() {
 
   useEffect(() => {
     if (error) setIsErrorModal(true);
-  }, [error])
+  }, [error]);
+
+  useEffect(() => {
+    listCreator(fetchResult, pageNumber, tableSize);
+  }, [pageNumber]);
 
   return (
     <div className="App">
@@ -155,10 +110,10 @@ export default function App() {
 
       {(fetchResult.length > 50)
         && <Pagination
-            pageNumber={pageNumber}
-            setPage={setPage}
-            pagesCount={pagesCount}
-          />
+          pageNumber={pageNumber}
+          setPageNumber={setPageNumber}
+          pagesCount={pagesCount}
+        />
       }
 
       {(fetchResult.length && !isLoading)
@@ -173,10 +128,10 @@ export default function App() {
 
       {(fetchResult.length > 50)
         && <Pagination
-            pageNumber={pageNumber}
-            setPage={setPage}
-            pagesCount={pagesCount}
-          />
+          pageNumber={pageNumber}
+          setPageNumber={setPageNumber}
+          pagesCount={pagesCount}
+        />
       }
       </div>
   )
