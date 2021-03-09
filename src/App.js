@@ -10,7 +10,7 @@ import Table from './components/Table/index';
 import Pagination from './components/Pagination';
 import InputForSearch from './components/InputForSearch';
 import AddForm from './components/AddForm';
-import DataModal from './components/DataModal';
+// import DataModal from './components/DataModal';
 import ErrorModal from './components/ErrorModal';
 
 export default function App() {
@@ -23,7 +23,7 @@ export default function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [isAddForm, setIsAddForm] = useState(false);
   const [isShowModal, setIsShowModal] = useState(false);
-  const [dataSize, setDataSize] = useState('');
+  // const [dataSize, setDataSize] = useState('');
   const [isErrorModal, setIsErrorModal] = useState(false);
 
   const tableSize = 50;
@@ -55,17 +55,18 @@ export default function App() {
       }
   }
 
-  useEffect(() => {
-    setIsShowModal(true);
-  }, []);
+  // useEffect(() => {
+  //   setIsShowModal(true);
+  // }, []);
 
   useEffect(() => {
-    if (dataSize === 'max') {
-      dataFetch(dataServies.maxData);
-    } else if (dataSize === 'min') {
-      dataFetch(dataServies.minData);
-    }
-  }, [dataSize]);
+    dataFetch(dataServies.getData)
+    // if (dataSize === 'max') {
+    //   dataFetch(dataServies.maxData);
+    // } else if (dataSize === 'min') {
+    //   dataFetch(dataServies.minData);
+    // }
+  }, []);
 
   useEffect(() => {
     if (error) setIsErrorModal(true);
@@ -77,11 +78,11 @@ export default function App() {
 
   return (
     <div className="App">
-      <DataModal
+      {/* <DataModal
         isShowModal={isShowModal}
         setIsShowModal={setIsShowModal}
         setDataSize={setDataSize}
-      />
+      /> */}
 
       <ErrorModal
         err={error}

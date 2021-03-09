@@ -21,10 +21,11 @@ export default function ErrorModal({ err, isErrorModal, setIsErrorModal, setIsSh
       <Modal.Footer>
         <Button onClick={() => {
           setIsErrorModal(false);
-          setIsShowModal(true);
+          // setIsShowModal(true);
         }}
         >
-          Повторить запрос
+          {/* Повторить запрос */}
+          Закрыть
         </Button>
       </Modal.Footer>
     </Modal>
